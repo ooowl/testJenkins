@@ -8,7 +8,7 @@ pipeline {
                     echo "Multiline shell steps works too"
                     ls -lah
                 '''
-                sh './1.sh'
+                sh 'sudo ./1.sh'
             }
         }
     }
