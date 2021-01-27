@@ -1,0 +1,22 @@
+# 单结点 eureka 的配置文件
+spring:
+  application:
+    name: homepage-eureka
+
+server:
+  port: 8000
+
+# 该单节点实例主机名
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    # 表示是否从 Eureka Server 中获取注册信息, 默认是 true.
+    # 启用当前配置文件时，该结点为单点，不需要同步数据，故设置为false
+    fetch-registry: false
+    # 表示是否将自己注册到 Eureka Server, 默认是 true.
+    # 启用当前配置文件时，该结点为单点，不需要同步数据，故设置为false
+    register-with-eureka: false
+    # 对外暴露服务的地址
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/

@@ -1,0 +1,52 @@
+## 多节点 eureka 的配置文件
+## 只能启动单节点 eureka 或多节点 eureka 的配置文件
+## 1. 在 host 文件中，添加三个 host：server1、server2、server3
+## 2. 每个 profiles 为一个实例，在同一个ip，不同的域名、端口号上启动
+## 3. 注册关系：
+##    server1 -> server2: 8001; server1 -> server3: 8002
+##    server2 -> server1: 8000; server1 -> server3: 8002
+##    server3 -> server1: 8000; server1 -> server2: 8001
+#
+#spring:
+#  application:
+#    name: homepage-eureka
+#  profiles: server1
+#server:
+#  port: 8000
+#eureka:
+#  instance:
+#    hostname: server1
+#    prefer-ip-address: false
+#  client:
+#    service-url:
+#      defaultZone: http://server2:8001/eureka/,http://server3:8002/eureka/
+#
+#---
+#spring:
+#  application:
+#    name: homepage-eureka
+#  profiles: server2
+#server:
+#  port: 8001
+#eureka:
+#  instance:
+#    hostname: server2
+#    prefer-ip-address: false
+#  client:
+#    service-url:
+#      defaultZone: http://server1:8000/eureka/,http://server3:8002/eureka/
+#
+#---
+#spring:
+#  application:
+#    name: homepage-eureka
+#  profiles: server3
+#server:
+#  port: 8002
+#eureka:
+#  instance:
+#    hostname: server3
+#    prefer-ip-address: false
+#  client:
+#    service-url:
+#      defaultZone: http://server1:8000/eureka/,http://server2:8001/eureka/

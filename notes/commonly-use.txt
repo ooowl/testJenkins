@@ -1,0 +1,17 @@
+
+
+
+1. 将该项目下所有模块打包成 jar 包
+    mvn clean package -Dmaven.test.skip=true -U
+
+2. 执行多实例 eureka jar 包，以及指定 spring 的配置(用3个终端运行)
+    cd homepage-eureka
+    cd target
+    java -jar homepage-eureka-1.0-SNAPSHOT.jar --spring.profiles.active=server1
+    java -jar homepage-eureka-1.0-SNAPSHOT.jar --spring.profiles.active=server2
+    java -jar homepage-eureka-1.0-SNAPSHOT.jar --spring.profiles.active=server3
+
+3. 访问 eureka 实例
+    http://127.0.0.1:8000/
+    http://127.0.0.1:8001/
+    http://127.0.0.1:8002/
