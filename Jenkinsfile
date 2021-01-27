@@ -9,6 +9,7 @@ pipeline {
                     ls -lah
                 '''
                 sh './1.sh'
+                sh 'echo "lakjsdads"'
             }
         }
     }
